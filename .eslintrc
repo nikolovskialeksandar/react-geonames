@@ -1,11 +1,9 @@
 {
   "parser": "babel-eslint",
   "extends": [
-    "standard",
-    "standard-react",
-    "plugin:prettier/recommended",
-    "prettier/standard",
-    "prettier/react"
+    "prettier",
+    "prettier/react",
+    "airbnb"
   ],
   "env": {
     "node": true
@@ -23,11 +21,17 @@
     }
   },
   "rules": {
-    "space-before-function-paren": 0,
-    "react/prop-types": 0,
-    "react/jsx-handler-names": 0,
-    "react/jsx-fragments": 0,
-    "react/no-unused-prop-types": 0,
-    "import/export": 0
+	  "prettier/prettier": "error",
+	  "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+	  "react/forbid-prop-types": [0, { "forbid": ["any"] }],
+	  "react/prop-types": 0,
+	  "react/destructuring-assignment": "off",
+	  "react/no-unused-state": "off",
+	  "react/state-in-constructor": "off",
+	  "react/jsx-props-no-spreading": "off",
+	  "import/no-extraneous-dependencies": "off",
+	  "react/no-array-index-key": "off",
+	  "jsx-a11y/click-events-have-key-events": "off",
+	  "jsx-a11y/no-noninteractive-element-interactions": "off"
   }
 }
