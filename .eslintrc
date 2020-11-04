@@ -6,7 +6,8 @@
     "airbnb"
   ],
   "env": {
-    "node": true
+    "node": true,
+    "browser": true
   },
   "parserOptions": {
     "ecmaVersion": 2020,
@@ -15,6 +16,7 @@
       "jsx": true
     }
   },
+  "plugins": ["react", "prettier"],
   "settings": {
     "react": {
       "version": "16"
