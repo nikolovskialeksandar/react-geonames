@@ -7,7 +7,6 @@ require('dotenv').config();
 
 class App extends Component {
   render() {
-    console.log(process.env.REACT_APP_GEONAMES_USERNAME)
     return (
       <Geocoder
         username={process.env.REACT_APP_GEONAMES_USERNAME}
