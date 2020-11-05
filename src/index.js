@@ -12,9 +12,10 @@ export default class Geocoder extends Component {
 
   onChange = (event) => {
     this.setState({ inputValue: event.target.value });
-    // set debounce time between requests
+    // Set debounce time between requests
     setTimeout(() => {
       if (this.state.inputValue !== '') {
+        // Convert props and parametars to URL
         let apiUrl = 'http://api.geonames.org/';
         if (this.props.https) {
           apiUrl = 'https://secure.geonames.org/';
@@ -23,6 +24,7 @@ export default class Geocoder extends Component {
         Object.keys(this.props.queryParams).forEach((key) => {
           url = url.concat(`&${key}=${this.props.queryParams[key]}`);
         });
+        // Send request
         fetch(url).then((response) => {
           response.json().then((data) => {
             this.setState({ results: data.geonames });
@@ -37,6 +39,7 @@ export default class Geocoder extends Component {
   onSelect = (place) => {
     const placeName = place.toponymName.concat(place.countryName ? `, ${place.countryName}` : null);
     this.setState({ inputValue: placeName });
+    this.props.onSelect(place, placeName);
   };
 
   hideResults = () => {
@@ -73,6 +76,7 @@ export default class Geocoder extends Component {
 }
 
 Geocoder.propTypes = {
+  onSelect: PropTypes.func.isRequired,
   username: PropTypes.string.isRequired,
   timeout: PropTypes.number,
   https: PropTypes.bool,

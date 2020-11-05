@@ -1,16 +1,12 @@
+.react-geonames input {
+  width: 300px;
+}
+
 .react-geonames-results	{
   position: absolute;
   padding: 0;
   z-index: 10;
   list-style: none;
-}
-
-.react-geonames-item {
-  cursor: pointer;
-}
-
-.react-geonames-item:hover {
-  background-color:#e4e4e4;
 }
 
 .react-geonames-hidden, .react-geonames-hidden > * { 
