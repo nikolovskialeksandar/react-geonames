@@ -12,9 +12,17 @@ export default class Geocoder extends Component {
 
   onChange = (event) => {
     this.setState({ inputValue: event.target.value });
+    // set debounce time between requests
     setTimeout(() => {
       if (this.state.inputValue !== '') {
-        const url = `http://api.geonames.org/search?q=${this.state.inputValue}&type=json&username=${this.props.username}&maxRows=10`;
+        let apiUrl = 'http://api.geonames.org/';
+        if (this.props.https) {
+          apiUrl = 'https://secure.geonames.org/';
+        }
+        let url = `${apiUrl}/search?q=${this.state.inputValue}&username=${this.props.username}`;
+        Object.keys(this.props.queryParams).forEach((key) => {
+          url = url.concat(`&${key}=${this.props.queryParams[key]}`);
+        });
         fetch(url).then((response) => {
           response.json().then((data) => {
             this.setState({ results: data.geonames });
@@ -44,8 +52,8 @@ export default class Geocoder extends Component {
   };
 
   render() {
-    const results = this.state.results.map((place) => (
-      <li className="react-geonames-item" onClick={() => this.onSelect(place)}>
+    const results = this.state.results.map((place, index) => (
+      <li key={index} className="react-geonames-item" onClick={() => this.onSelect(place)}>
         {place.toponymName.concat(place.countryName ? `, ${place.countryName}` : null)}
       </li>
     ));
@@ -53,6 +61,7 @@ export default class Geocoder extends Component {
       <div className="react-geonames">
         <input
           value={this.state.inputValue}
+          placeholder={this.props.placeholder}
           onChange={this.onChange}
           onFocus={this.showResults}
           onBlur={this.hideResults}
@@ -64,10 +73,19 @@ export default class Geocoder extends Component {
 }
 
 Geocoder.propTypes = {
-  timeout: PropTypes.number,
   username: PropTypes.string.isRequired,
+  timeout: PropTypes.number,
+  https: PropTypes.bool,
+  placeholder: PropTypes.string,
+  queryParams: PropTypes.object,
 };
 
 Geocoder.defaultProps = {
   timeout: 300,
+  https: false,
+  placeholder: 'Search',
+  queryParams: {
+    type: 'json',
+    maxRows: 10,
+  },
 };
