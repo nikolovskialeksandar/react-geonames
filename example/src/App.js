@@ -2,11 +2,18 @@ import React, { Component } from 'react';
 
 import Geocoder from 'react-geonames';
 import ReactMapGL from 'react-map-gl';
+import 'react-geonames/src/geonames.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 import 'react-geonames/dist/index.css';
 
 require('dotenv').config();
+
+const queryParams = {
+  type: 'json',
+  maxRows: 10,
+  inclBbox: true,
+};
 
 class App extends Component {
   state = {
@@ -33,11 +40,6 @@ class App extends Component {
   };
 
   render() {
-    const queryParams = {
-      type: 'json',
-      maxRows: 10,
-      inclBbox: true,
-    };
     return (
       <div>
         <Geocoder

@@ -1,0 +1,24 @@
+.react-geonames-results	{
+    position: absolute;
+    border-radius: 2px;
+    border: 1px solid #96969650;
+    margin: 3px 0 0 2px;
+    background-color: #ffffffee;
+    z-index: 10;
+    box-sizing: border-box;
+}
+
+.react-geonames-item {
+    padding: 12px 8px;
+    border-radius: 2px;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.react-geonames-item:hover {
+    background-color:#e4e4e4;
+}
+
+.hidden, .hidden > * { 
+    display: none;
+}
