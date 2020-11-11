@@ -63,6 +63,7 @@ export default class Geocoder extends Component {
     return (
       <div className="react-geonames">
         <input
+          className="react-geonames-input"
           value={this.state.inputValue}
           placeholder={this.props.placeholder}
           onChange={this.onChange}
