@@ -57,7 +57,8 @@ export default class Geocoder extends Component {
   render() {
     const results = this.state.results.map((place, index) => (
       <li key={index} className="react-geonames-item" onClick={() => this.onSelect(place)}>
-        {place.toponymName.concat(place.countryName ? `, ${place.countryName}` : null)}
+        <span>{place.toponymName}</span>
+        <span style={{ color: 'gray' }}>{place.countryName ? ` ${place.countryName}` : null}</span>
       </li>
     ));
     return (
