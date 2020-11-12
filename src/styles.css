@@ -1,0 +1,10 @@
+.react-geonames-results	{
+  position: absolute;
+  padding: 0;
+  z-index: 10;
+  list-style: none;
+}
+
+.react-geonames-hidden, .react-geonames-hidden > * { 
+  display: none;
+}
