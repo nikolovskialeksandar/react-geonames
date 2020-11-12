@@ -12,7 +12,6 @@ require('dotenv').config();
 const queryParams = {
   type: 'json',
   maxRows: 10,
-  inclBbox: true,
 };
 
 class App extends Component {
@@ -20,9 +19,6 @@ class App extends Component {
     viewport: {
       width: 700,
       height: 500,
-      latitude: 37.7577,
-      longitude: -122.4376,
-      zoom: 10,
     },
     placename: '',
   };
@@ -41,7 +37,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{ margin: '50px'}}>
         <Geocoder
           username={process.env.REACT_APP_GEONAMES_USERNAME}
           https
