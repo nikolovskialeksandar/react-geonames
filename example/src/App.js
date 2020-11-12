@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Geocoder from 'react-geonames';
 import ReactMapGL from 'react-map-gl';
-import 'react-geonames/src/geonames.css';
+import 'react-geonames/dist/geonames.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 import 'react-geonames/dist/index.css';
