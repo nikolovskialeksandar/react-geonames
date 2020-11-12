@@ -5,7 +5,6 @@ Geocoder react component that is using [Geonames](http://www.geonames.org/) API.
 [![NPM](https://img.shields.io/npm/v/react-geonames.svg)](https://www.npmjs.com/package/react-geonames) 
 [![Code Style](https://badgen.net/badge/code%20style/airbnb/ff5a5f)](https://github.com/airbnb/javascript)
 ## Install
-s
 ```bash
 npm install --save react-geonames
 ```
@@ -19,7 +18,7 @@ import Geocoder from 'react-geonames';
 import ReactMapGL from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 // Importing additional styles
-import 'react-geonames/src/geonames.css';
+import 'react-geonames/dist/geonames.css';
 
 import 'react-geonames/dist/index.css';
 
