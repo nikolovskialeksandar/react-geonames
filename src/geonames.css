@@ -1,8 +1,25 @@
+.react-geonames {
+    width: 300px;
+    margin: 20px;
+}
+
+.react-geonames-input {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #535353;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+.react-geonames-input:focus {
+    outline: none;
+}
 .react-geonames-results	{
+    width: 300px;
     position: absolute;
-    border-radius: 2px;
+    border-radius: 3px;
     border: 1px solid #96969650;
-    margin: 3px 0 0 2px;
+    margin-top: 0;
     background-color: #ffffffee;
     z-index: 10;
     box-sizing: border-box;
@@ -16,9 +33,5 @@
 }
 
 .react-geonames-item:hover {
-    background-color:#e4e4e4;
-}
-
-.hidden, .hidden > * { 
-    display: none;
+    background-color:#e4e4e4a6;
 }
