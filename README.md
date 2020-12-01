@@ -1,6 +1,6 @@
 # react-geonames
 
-Geocoder react component that is using [Geonames](http://www.geonames.org/) API. Geonames is geographical </br> database with various free webservices, this component is using websevice for location </br> search. You can use it with Mapbox map service or another map service. [React mapbox library](https://github.com/visgl/react-map-gl)</br>is used in example. See demo [here](https://nikolovskialeksandar.github.io/react-geonames/).
+Geocoder react component that is using [Geonames](http://www.geonames.org/) API. Geonames is geographical </br> database with various free webservices, this component is using webservice for location </br> search. You can use it with Mapbox map service or another map service. [React mapbox library](https://github.com/visgl/react-map-gl)</br>is used in example. See demo [here](https://nikolovskialeksandar.github.io/react-geonames/).
 
 [![NPM](https://img.shields.io/npm/v/react-geonames.svg)](https://www.npmjs.com/package/react-geonames) 
 [![Code Style](https://badgen.net/badge/code%20style/airbnb/ff5a5f)](https://github.com/airbnb/javascript)
