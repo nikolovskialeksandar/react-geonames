@@ -5,6 +5,10 @@
   list-style: none;
 }
 
+.react-geonames-results:empty	{
+  display: none;
+}
+
 .react-geonames-hidden, .react-geonames-hidden > * { 
   display: none;
 }
