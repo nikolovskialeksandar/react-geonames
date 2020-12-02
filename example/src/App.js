@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 
 import Geocoder from 'react-geonames';
 import ReactMapGL from 'react-map-gl';
-import 'react-geonames/dist/geonames.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 import 'react-geonames/dist/index.css';
+import 'react-geonames/dist/geonames.css';
 
 require('dotenv').config();
 
@@ -17,10 +17,10 @@ const queryParams = {
 class App extends Component {
   state = {
     viewport: {
-      width: 700,
+      width: 600,
       height: 500,
     },
-    placename: '',
+    place: {},
   };
 
   onSelect = (place, placename) => {
@@ -31,19 +31,28 @@ class App extends Component {
         longitude: +place.lng,
         zoom: 10,
       },
-      placename: placename,
+      place: {
+        latitude: +place.lat,
+        longitude: +place.lng,
+        placename: placename,
+      },
     }));
+  };
+
+  onClear = () => {
+    this.setState({ place: {} });
   };
 
   render() {
     return (
-      <div style={{ margin: '50px'}}>
+      <div style={{ margin: '50px', width: '80%' }}>
         <Geocoder
           username={process.env.REACT_APP_GEONAMES_USERNAME}
           https
           queryParams={queryParams}
           placeholder="Search"
           onSelect={this.onSelect}
+          onClear={this.onClear}
         />
         <ReactMapGL
           {...this.state.viewport}
