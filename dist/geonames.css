@@ -3,8 +3,12 @@
     margin: 20px;
 }
 
+@media(max-width: 600px) {
+    .react-geonames {
+        width: 90%;
+    }
+}
 .react-geonames-input {
-    width: 300px;
     padding: 10px;
     border: 1px solid #535353;
     border-radius: 3px;
@@ -14,6 +18,20 @@
 .react-geonames-input:focus {
     outline: none;
 }
+
+/* Clear button */
+
+.react-geonames-clear-button {
+    top: 1px;
+    right: 3px;
+}
+
+.react-geonames-clear-button:active {
+   outline: none;
+}
+
+ /* Results list */
+
 .react-geonames-results	{
     width: 300px;
     position: absolute;

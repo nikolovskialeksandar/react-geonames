@@ -1,5 +1,37 @@
-.react-geonames-results	{
+.react-geonames {
+  width: 300px;
+}
+
+.react-geonames-input-area {
+  width: 100%;
+  position: relative;
+}
+
+.react-geonames-input {
+  width: 100%;
+  padding: 10px;
+}
+
+/* Clear button */
+
+.react-geonames-clear-button {
   position: absolute;
+  top: 4px;
+  right: -10px;
+  border: none;
+  background-color: white;
+  color: #707070;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.react-geonames-clear-button:hover {
+  color: #2c2c2c;
+}
+
+ /* Results list */
+
+.react-geonames-results	{
   padding: 0;
   z-index: 10;
   list-style: none;
