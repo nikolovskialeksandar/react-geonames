@@ -19,9 +19,7 @@ import ReactMapGL from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 // Importing additional styles
 import 'react-geonames/dist/geonames.css';
-
-import 'react-geonames/dist/index.css';
-
+import 'react-geonames/dist/geonames.css';
 const queryParams = {
   type: 'json',
   maxRows: 10,
@@ -36,7 +34,7 @@ class App extends Component {
       longitude: -122.4376,
       zoom: 10,
     },
-    placename: '',
+    place: {},
   };
 
   onSelect = (place, placename) => {
@@ -47,8 +45,16 @@ class App extends Component {
         longitude: +place.lng,
         zoom: 10,
       },
-      placename: placename,
+      place: {
+        latitude: +place.lat,
+        longitude: +place.lng,
+        placename: placename,
+      },
     }));
+  };
+
+  onClear = () => {
+    this.setState({ place: {} });
   };
 
   render() {
@@ -60,6 +66,7 @@ class App extends Component {
           queryParams={queryParams}
           placeholder="Search"
           onSelect={this.onSelect}
+          onClear={this.onClear}
         />
         <ReactMapGL
           {...this.state.viewport}
@@ -80,6 +87,7 @@ export default App;
 |---------|------|---------|-------------|
 | onSelect | function (*required*) | Function that sets viewport or marker, receives</br>two arguments: selected location object</br>and formated location name| - |
 | username | string (*required*) | Geonames [username](http://www.geonames.org/login) | - |
+| onClear|function| Function triggered when clear button is clicked or input field is cleared.|-|
 | timeout | number | Debounce time between requests<br/> while typing | 300 |
 | https | boolean | Use HTTPS Geonames endpoint</br>(HTTP is used in their documentation </br>examples)|false |
 | placeholder | string | Input field placeholder | Search |
@@ -87,10 +95,12 @@ export default App;
 
 ## Styling
 
-Component has only basic style related to behavior of results, </br>you can style it yourself using these classes or import styling as shown </br>in example above.
+Component has basic style related to behavior, </br>you can style it yourself using these classes or import styling as shown </br>in example above.
 | Element | Class |
 |---------|-----------|
 |Geocoder container| .react-geonames |
+|Input area| .react-geonames-input-area|
+|Clear button| .react-geonames-clear-button |
 | Input element | .react-geonames-input |
 | Results list | .react-geonames-results |
 | Single result | .react-geonames-item |
