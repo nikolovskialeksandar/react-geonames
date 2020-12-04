@@ -1,6 +1,6 @@
 # react-geonames
 
-Geocoder react component that is using [Geonames](http://www.geonames.org/) API. Geonames is geographical </br> database with various free webservices, this component is using websevice for location </br> search. You can use it with Mapbox map service or another map service. [React mapbox library](https://github.com/visgl/react-map-gl)</br>is used in example. See demo [here](https://nikolovskialeksandar.github.io/react-geonames/).
+Geocoder react component that is using [Geonames](http://www.geonames.org/) API. Geonames is geographical </br> database with various free webservices, this component is using webservice for location </br> search. You can use it with Mapbox map service or another map service. [React mapbox library](https://github.com/visgl/react-map-gl)</br>is used in example. See demo [here](https://nikolovskialeksandar.github.io/react-geonames/).
 
 [![NPM](https://img.shields.io/npm/v/react-geonames.svg)](https://www.npmjs.com/package/react-geonames) 
 [![Code Style](https://badgen.net/badge/code%20style/airbnb/ff5a5f)](https://github.com/airbnb/javascript)
@@ -19,9 +19,6 @@ import ReactMapGL from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 // Importing additional styles
 import 'react-geonames/dist/geonames.css';
-
-import 'react-geonames/dist/index.css';
-
 const queryParams = {
   type: 'json',
   maxRows: 10,
@@ -36,7 +33,7 @@ class App extends Component {
       longitude: -122.4376,
       zoom: 10,
     },
-    placename: '',
+    place: {},
   };
 
   onSelect = (place, placename) => {
@@ -47,8 +44,16 @@ class App extends Component {
         longitude: +place.lng,
         zoom: 10,
       },
-      placename: placename,
+      place: {
+        latitude: +place.lat,
+        longitude: +place.lng,
+        placename: placename,
+      },
     }));
+  };
+
+  onClear = () => {
+    this.setState({ place: {} });
   };
 
   render() {
@@ -60,6 +65,7 @@ class App extends Component {
           queryParams={queryParams}
           placeholder="Search"
           onSelect={this.onSelect}
+          onClear={this.onClear}
         />
         <ReactMapGL
           {...this.state.viewport}
@@ -80,6 +86,7 @@ export default App;
 |---------|------|---------|-------------|
 | onSelect | function (*required*) | Function that sets viewport or marker, receives</br>two arguments: selected location object</br>and formated location name| - |
 | username | string (*required*) | Geonames [username](http://www.geonames.org/login) | - |
+| onClear|function| Function triggered when clear button is clicked or input field is cleared.|-|
 | timeout | number | Debounce time between requests<br/> while typing | 300 |
 | https | boolean | Use HTTPS Geonames endpoint</br>(HTTP is used in their documentation </br>examples)|false |
 | placeholder | string | Input field placeholder | Search |
@@ -87,13 +94,27 @@ export default App;
 
 ## Styling
 
-Component has only basic style related to behavior of results, </br>you can style it yourself using these classes or import styling as shown </br>in example above.
+Component has no style out of box, </br>you can style it yourself using these classes or import styling as shown </br>in example above.
 | Element | Class |
 |---------|-----------|
-|Geocoder container| .react-geonames |
+| Geocoder container| .react-geonames |
+| Input area| .react-geonames-input-area|
 | Input element | .react-geonames-input |
+| Clear button| .react-geonames-clear-button |
 | Results list | .react-geonames-results |
 | Single result | .react-geonames-item |
+
+#### Element hierarchy 
+
+```bash
+Geocoder container
+  └── Input area
+  │    ├── Input element
+  │    └── Clear button
+  └── Results list
+       └── Single result
+
+```
 ## License
 
 MIT © [nikolovskialeksandar](https://github.com/nikolovskialeksandar)

@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import './styles.css';
-
 export default class Geocoder extends Component {
   state = {
     results: [],
     inputValue: '',
-    resultStyleClasses: ['react-geonames-results', ' react-geonames-hidden'],
+    selectedResult: '',
+    showResults: false,
   };
 
   onChange = (event) => {
@@ -31,47 +30,72 @@ export default class Geocoder extends Component {
           });
         });
       } else {
-        this.setState({ results: [] });
+        this.onClear();
       }
     }, this.props.timeout);
   };
 
   onSelect = (place) => {
-    const placeName = place.toponymName.concat(place.countryName ? `, ${place.countryName}` : null);
-    this.setState({ inputValue: placeName });
+    const placeName = place.toponymName.concat(place.countryName ? `, ${place.countryName}` : '');
+    this.setState((prevState) => ({
+      ...prevState,
+      inputValue: placeName,
+      selectedResult: placeName,
+    }));
     this.props.onSelect(place, placeName);
+  };
+
+  onClear = () => {
+    this.setState((prevState) => ({
+      ...prevState,
+      results: [],
+      inputValue: '',
+      selectedResult: '',
+    }));
+    this.props.onClear();
   };
 
   hideResults = () => {
     setTimeout(() => {
-      this.setState({
-        resultStyleClasses: ['react-geonames-results', ' react-geonames-hidden'],
-      });
+      this.setState({ showResults: false });
     }, 300);
   };
 
   showResults = () => {
-    this.setState({ resultStyleClasses: ['react-geonames-results'] });
+    this.setState({ showResults: true });
   };
 
   render() {
     const results = this.state.results.map((place, index) => (
       <li key={index} className="react-geonames-item" onClick={() => this.onSelect(place)}>
         <span>{place.toponymName}</span>
-        <span style={{ color: 'gray' }}>{place.countryName ? ` ${place.countryName}` : null}</span>
+        <span style={{ color: 'gray' }}>{place.countryName ? ` ${place.countryName}` : ''}</span>
       </li>
     ));
     return (
       <div className="react-geonames">
-        <input
-          className="react-geonames-input"
-          value={this.state.inputValue}
-          placeholder={this.props.placeholder}
-          onChange={this.onChange}
-          onFocus={this.showResults}
-          onBlur={this.hideResults}
-        />
-        <ul className={this.state.resultStyleClasses}>{results}</ul>
+        <div className="react-geonames-input-area">
+          <input
+            className="react-geonames-input"
+            value={this.state.inputValue}
+            type="text"
+            placeholder={this.props.placeholder}
+            onChange={this.onChange}
+            onFocus={this.showResults}
+            onBlur={this.hideResults}
+          />
+          {this.state.selectedResult ? (
+            <button className="react-geonames-clear-button" onClick={this.onClear} type="button">
+              &#10005;
+            </button>
+          ) : null}
+        </div>
+        <ul
+          className="react-geonames-results"
+          style={this.state.showResults ? null : { display: 'none' }}
+        >
+          {results}
+        </ul>
       </div>
     );
   }
@@ -79,6 +103,7 @@ export default class Geocoder extends Component {
 
 Geocoder.propTypes = {
   onSelect: PropTypes.func.isRequired,
+  onClear: PropTypes.func,
   username: PropTypes.string.isRequired,
   timeout: PropTypes.number,
   https: PropTypes.bool,
@@ -87,6 +112,7 @@ Geocoder.propTypes = {
 };
 
 Geocoder.defaultProps = {
+  onClear: () => {},
   timeout: 300,
   https: false,
   placeholder: 'Search',
