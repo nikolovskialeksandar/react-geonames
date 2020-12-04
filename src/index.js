@@ -32,7 +32,6 @@ export default class Geocoder extends Component {
           });
         });
       } else {
-        this.setState({ results: [] });
         this.onClear();
       }
     }, this.props.timeout);
@@ -51,6 +50,7 @@ export default class Geocoder extends Component {
   onClear = () => {
     this.setState((prevState) => ({
       ...prevState,
+      results: [],
       inputValue: '',
       selectedResult: '',
     }));

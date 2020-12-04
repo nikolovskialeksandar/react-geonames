@@ -15,13 +15,15 @@
 /* Clear button */
 
 .react-geonames-clear-button {
+  padding-top: 0;
+  margin-top: 1px;
   position: absolute;
   top: 4px;
   right: -10px;
   border: none;
   background-color: white;
   color: #707070;
-  font-size: 1.5em;
+  font-size: 23px;
   cursor: pointer;
 }
 
