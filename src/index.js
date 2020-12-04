@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import './styles.css';
-
 export default class Geocoder extends Component {
   state = {
     results: [],
     inputValue: '',
     selectedResult: '',
-    resultStyleClasses: ['react-geonames-results', ' react-geonames-hidden'],
+    showResults: false,
   };
 
   onChange = (event) => {
@@ -59,14 +57,12 @@ export default class Geocoder extends Component {
 
   hideResults = () => {
     setTimeout(() => {
-      this.setState({
-        resultStyleClasses: ['react-geonames-results', ' react-geonames-hidden'],
-      });
+      this.setState({ showResults: false });
     }, 300);
   };
 
   showResults = () => {
-    this.setState({ resultStyleClasses: ['react-geonames-results'] });
+    this.setState({ showResults: true });
   };
 
   render() {
@@ -94,7 +90,12 @@ export default class Geocoder extends Component {
             </button>
           ) : null}
         </div>
-        <ul className={this.state.resultStyleClasses}>{results}</ul>
+        <ul
+          className="react-geonames-results"
+          style={this.state.showResults ? null : { display: 'none' }}
+        >
+          {results}
+        </ul>
       </div>
     );
   }

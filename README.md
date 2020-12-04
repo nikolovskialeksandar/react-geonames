@@ -19,7 +19,6 @@ import ReactMapGL from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 // Importing additional styles
 import 'react-geonames/dist/geonames.css';
-import 'react-geonames/dist/geonames.css';
 const queryParams = {
   type: 'json',
   maxRows: 10,
@@ -95,15 +94,27 @@ export default App;
 
 ## Styling
 
-Component has basic style related to behavior, </br>you can style it yourself using these classes or import styling as shown </br>in example above.
+Component has no style out of box, </br>you can style it yourself using these classes or import styling as shown </br>in example above.
 | Element | Class |
 |---------|-----------|
-|Geocoder container| .react-geonames |
-|Input area| .react-geonames-input-area|
-|Clear button| .react-geonames-clear-button |
+| Geocoder container| .react-geonames |
+| Input area| .react-geonames-input-area|
 | Input element | .react-geonames-input |
+| Clear button| .react-geonames-clear-button |
 | Results list | .react-geonames-results |
 | Single result | .react-geonames-item |
+
+#### Element hierarchy 
+
+```bash
+Geocoder container
+  └── Input area
+  │    ├── Input element
+  │    └── Clear button
+  └── Results list
+       └── Single result
+
+```
 ## License
 
 MIT © [nikolovskialeksandar](https://github.com/nikolovskialeksandar)

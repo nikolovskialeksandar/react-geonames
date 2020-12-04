@@ -3,8 +3,7 @@ import React, { Component } from 'react';
 import Geocoder from 'react-geonames';
 import ReactMapGL from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
-
-import 'react-geonames/dist/index.css';
+// Importing additional styles
 import 'react-geonames/dist/geonames.css';
 
 require('dotenv').config();
