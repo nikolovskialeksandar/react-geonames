@@ -19,6 +19,7 @@ import ReactMapGL from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 // Importing additional styles
 import 'react-geonames/dist/geonames.css';
+
 const queryParams = {
   type: 'json',
   maxRows: 10,
@@ -90,7 +91,7 @@ export default App;
 | timeout | number | Debounce time between requests<br/> while typing | 300 |
 | https | boolean | Use HTTPS Geonames endpoint</br>(HTTP is used in their documentation </br>examples)|false |
 | placeholder | string | Input field placeholder | Search |
-| queryParams | object | Geonames search parametars, <br/>you can see documentation [here](https://www.geonames.org/export/geonames-search.html) | {<br/>&nbsp;&nbsp;type: 'json', <br/>&nbsp;&nbsp;maxRows: 10<br/>} |
+| queryParams | object | Geonames search parametars, <br/>you can see documentation [here](https://www.geonames.org/export/geonames-search.html) | {<br/>&nbsp;&nbsp;type: 'json', <br/>&nbsp;&nbsp;maxRows:&nbsp;10<br/>} |
 
 ## Styling
 
