@@ -45,14 +45,16 @@ class App extends Component {
   render() {
     return (
       <div style={{ margin: '50px', width: '80%' }}>
-        <Geocoder
-          username={process.env.REACT_APP_GEONAMES_USERNAME}
-          https
-          queryParams={queryParams}
-          placeholder="Search"
-          onSelect={this.onSelect}
-          onClear={this.onClear}
-        />
+        <div style={{ margin: '20px' }}>
+          <Geocoder
+            username={process.env.REACT_APP_GEONAMES_USERNAME}
+            https
+            queryParams={queryParams}
+            placeholder="Search"
+            onSelect={this.onSelect}
+            onClear={this.onClear}
+          />
+        </div>
         <ReactMapGL
           {...this.state.viewport}
           onViewportChange={(nextViewport) => this.setState({ viewport: nextViewport })}
