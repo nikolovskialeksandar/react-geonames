@@ -1,8 +1,8 @@
 {
   "name": "react-geonames",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Geocoder react component that is using Geonames API",
-  "keywords": ["react", "geocoder", "geonames"],
+  "keywords": ["react", "geocoder", "geonames", "map", "mapbox"],
   "author": "nikolovskialeksandar",
   "license": "MIT",
   "repository": "nikolovskialeksandar/react-geonames",
