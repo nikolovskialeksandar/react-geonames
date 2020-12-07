@@ -74,9 +74,11 @@ export default class Geocoder extends Component {
     ));
     return (
       <div className="react-geonames">
+        {this.props.label ? <label htmlFor="search">{this.props.label}</label> : null}
         <div className="react-geonames-input-area">
           <input
             className="react-geonames-input"
+            name="search"
             value={this.state.inputValue}
             type="text"
             placeholder={this.props.placeholder}
@@ -108,6 +110,7 @@ Geocoder.propTypes = {
   timeout: PropTypes.number,
   https: PropTypes.bool,
   placeholder: PropTypes.string,
+  label: PropTypes.string,
   queryParams: PropTypes.object,
 };
 
