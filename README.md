@@ -90,7 +90,8 @@ export default App;
 | onClear|function| Function triggered when clear button is clicked or input field is cleared|-|
 | timeout | number | Debounce time between requests<br/> while typing | 300 |
 | https | boolean | Use HTTPS Geonames endpoint</br>(HTTP is used in their documentation </br>examples)|false |
-| placeholder | string | Input field placeholder | 'Search' |
+| placeholder | string | Input field label | - |
+| label | string | Input field placeholder | 'Search' |
 | queryParams | object | Geonames search parametars, <br/>you can see documentation [here](https://www.geonames.org/export/geonames-search.html) | {<br/>&nbsp;&nbsp;type: 'json', <br/>&nbsp;&nbsp;maxRows:&nbsp;10<br/>} |
 
 ## Styling
