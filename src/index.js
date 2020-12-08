@@ -81,6 +81,7 @@ export default class Geocoder extends Component {
             name="search"
             value={this.state.inputValue}
             type="text"
+            autoComplete="off"
             placeholder={this.props.placeholder}
             onChange={this.onChange}
             onFocus={this.showResults}
