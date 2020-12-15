@@ -55,6 +55,7 @@ export default class Geocoder extends Component {
     this.props.onClear();
   };
 
+
   hideResults = () => {
     setTimeout(() => {
       this.setState({ showResults: false });
@@ -68,11 +69,7 @@ export default class Geocoder extends Component {
   render() {
     const results = this.state.results.map((place, index) => (
       <li key={index} className="react-geonames-item" onClick={() => this.onSelect(place)}>
-        <span>{place.toponymName}</span>
-        <div style={{ color: 'gray' }}>
-          {place.adminName1 ? ` ${place.adminName1}, ` : ''}
-          {place.countryName ? ` ${place.countryName}` : ''}
-        </div>
+        {this.props.formatResult(place)}
       </li>
     ));
     return (
@@ -116,6 +113,7 @@ Geocoder.propTypes = {
   placeholder: PropTypes.string,
   label: PropTypes.string,
   queryParams: PropTypes.object,
+  formatResult: PropTypes.func,
 };
 
 Geocoder.defaultProps = {
@@ -127,4 +125,13 @@ Geocoder.defaultProps = {
     type: 'json',
     maxRows: 10,
   },
+  formatResult: (place) => (
+    <div>
+      <span>{place.toponymName}</span>
+      <div style={{ color: 'gray' }}>
+        {place.adminName1 ? ` ${place.adminName1}, ` : ''}
+        {place.countryName ? ` ${place.countryName}` : ''}
+      </div>
+    </div>
+  ),
 };
