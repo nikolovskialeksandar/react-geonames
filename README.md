@@ -93,10 +93,18 @@ export default App;
 | placeholder | string | Input field placeholder | 'Search' |
 | label | string | Input field label | - |
 | queryParams | object | Geonames search parametars, <br/>you can see documentation [here](https://www.geonames.org/export/geonames-search.html) | {<br/>&nbsp;&nbsp;type: 'json', <br/>&nbsp;&nbsp;maxRows:&nbsp;10<br/>} |
+| formatResult | function | Function for formating single result | [See below](#formating-results) |
+
 
 ## Styling
 
-Component has no style out of box, </br>you can style it yourself using these classes or import styling as shown </br>in example above.
+Component has no style out of box, </br>you can style it yourself using classes from the list or import styling
+```jsx
+import 'react-geonames/dist/geonames.css';
+```
+ as shown in example [above](#usage).
+
+ #### Class list
 | Element | Class |
 |---------|-----------|
 | Geocoder container| .react-geonames |
@@ -116,6 +124,21 @@ Geocoder container
   └── Results list
        └── Single result
 
+```
+## Formating results
+Single result can be customized by passing function to **formatResult** prop. For additional administrative regions add ```style: 'full'``` to **queryParams** prop.
+
+Default:
+```jsx
+  formatResult = (place) => (
+    <div>
+      <span>{place.toponymName}</span>
+      <div style={{ color: 'gray' }}>
+        {place.adminName1 ? ` ${place.adminName1}, ` : ''}
+        {place.countryName ? ` ${place.countryName}` : ''}
+      </div>
+    </div>
+  );
 ```
 ## License
 
