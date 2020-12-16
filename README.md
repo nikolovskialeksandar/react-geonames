@@ -94,6 +94,7 @@ export default App;
 | label | string | Input field label | - |
 | queryParams | object | Geonames search parametars, <br/>you can see documentation [here](https://www.geonames.org/export/geonames-search.html) | {<br/>&nbsp;&nbsp;type: 'json', <br/>&nbsp;&nbsp;maxRows:&nbsp;10<br/>} |
 | formatResult | function | Function for formating single result | [See below](#formating-results) |
+| formatSelectedResult | function | Function for formating selected result shown in input field | [See below](#formating-results) |
 
 
 ## Styling
@@ -126,6 +127,8 @@ Geocoder container
 
 ```
 ## Formating results
+
+#### Formating single result
 Single result can be customized by passing function to **formatResult** prop. For additional administrative regions add ```style: 'full'``` to **queryParams** prop.
 
 Default:
@@ -140,6 +143,18 @@ Default:
     </div>
   );
 ```
+#### Formating selected result
+By passing function to **formatSelectedResult** you can customize selected result displayed in input field, which is also returned as argument to **onSelect** prop.
+
+Default:
+```jsx
+  formatSelectedResult = (place) => (
+    place.toponymName
+      .concat(place.adminName1 ? `, ${place.adminName1}` : '')
+      .concat(place.countryName ? `, ${place.countryName}` : '')
+  );
+```
+
 ## License
 
 MIT © [nikolovskialeksandar](https://github.com/nikolovskialeksandar)
