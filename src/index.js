@@ -36,7 +36,7 @@ export default class Geocoder extends Component {
   };
 
   onSelect = (place) => {
-    const placeName = place.toponymName.concat(place.countryName ? `, ${place.countryName}` : '');
+    const placeName = this.props.formatSelectedResult(place);
     this.setState((prevState) => ({
       ...prevState,
       inputValue: placeName,
@@ -54,7 +54,6 @@ export default class Geocoder extends Component {
     }));
     this.props.onClear();
   };
-
 
   hideResults = () => {
     setTimeout(() => {
@@ -114,6 +113,7 @@ Geocoder.propTypes = {
   label: PropTypes.string,
   queryParams: PropTypes.object,
   formatResult: PropTypes.func,
+  formatSelectedResult: PropTypes.func,
 };
 
 Geocoder.defaultProps = {
@@ -133,5 +133,12 @@ Geocoder.defaultProps = {
         {place.countryName ? ` ${place.countryName}` : ''}
       </div>
     </div>
+  ),
+  // eslint-disable-next-line prettier/prettier
+  formatSelectedResult: (place) => (
+    place.toponymName
+      .concat(place.adminName1 ? `, ${place.adminName1}` : '')
+      // eslint-disable-next-line prettier/prettier
+      .concat(place.countryName ? `, ${place.countryName}` : '')
   ),
 };
