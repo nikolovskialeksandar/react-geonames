@@ -9,20 +9,38 @@ export default class Geocoder extends Component {
     showResults: false,
   };
 
+  componentDidMount() {
+    this.timer = null;
+  }
+
+  debounce = (callback, timeout) => {
+    if (this.timer) {
+      clearTimeout(this.timer);
+    }
+
+    this.timer = setTimeout(() => {
+      callback();
+    }, timeout);
+  };
+
   onChange = (event) => {
     this.setState({ inputValue: event.target.value });
+
     // Set debounce time between requests
-    setTimeout(() => {
+    this.debounce(() => {
       if (this.state.inputValue !== '') {
-        // Convert props and parametars to URL
+        // Set HTTP or HTTPS base URL
         let apiUrl = 'http://api.geonames.org/';
         if (this.props.https) {
           apiUrl = 'https://secure.geonames.org/';
         }
+
+        // Convert props and parametars to URL
         let url = `${apiUrl}/search?q=${this.state.inputValue}&username=${this.props.username}`;
         Object.keys(this.props.queryParams).forEach((key) => {
           url = url.concat(`&${key}=${this.props.queryParams[key]}`);
         });
+
         // Send request
         fetch(url).then((response) => {
           response.json().then((data) => {
@@ -35,6 +53,7 @@ export default class Geocoder extends Component {
     }, this.props.timeout);
   };
 
+  // Triggered when result is selected
   onSelect = (place) => {
     const placeName = this.props.formatSelectedResult(place);
     this.setState((prevState) => ({
@@ -45,6 +64,7 @@ export default class Geocoder extends Component {
     this.props.onSelect(place, placeName);
   };
 
+  // Triggered when clear button is clicked or input field is cleared
   onClear = () => {
     this.setState((prevState) => ({
       ...prevState,
